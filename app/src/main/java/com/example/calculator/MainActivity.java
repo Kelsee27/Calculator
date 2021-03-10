@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity implements onButtonClickedLi
                 resultView.setText(num2 = changeSign(num2));
             }
         }
-
         //Checking to see if an operator has been selected.
         //If not, the digit or decimal entered are appended to result
         //Then displayed on the TextView
