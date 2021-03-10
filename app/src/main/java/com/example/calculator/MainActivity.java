@@ -1,4 +1,4 @@
-//Kelsee Carmichael T00632621
+//Kelsee Carmichael Android Calculator App
 package com.example.calculator;
 
 import androidx.appcompat.app.AppCompatActivity;
