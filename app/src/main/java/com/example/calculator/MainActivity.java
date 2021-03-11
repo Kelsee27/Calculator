@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements onButtonClickedLi
          if (button.getText().equals("+/-")) {
             if (num2.isEmpty()) {
                 result = changeSign(result);
-                resultView.setText(suppressZero());
+                resultView.setText(formatResult());
             } else {
                 resultView.setText(num2 = changeSign(num2));
             }
@@ -89,16 +89,14 @@ public class MainActivity extends AppCompatActivity implements onButtonClickedLi
              reset();
              resultView.setText(result);
          }
-
-         //deals with percent button, also clears operators to avoid crash
+         //deals with percent button
          else if (button.getText().equals("%")){
              double num = Double.parseDouble(result);
              result = String.valueOf(num / 100);
-             resultView.setText(suppressZero());
+             resultView.setText(formatResult());
              firstOperator = "";
              nextOperator = "";
          }
-
          //calls operation method when the equal button is pressed then clears the operation
          //variables to avoid crashing
          else if (button.getText().equals("=")){
@@ -106,8 +104,7 @@ public class MainActivity extends AppCompatActivity implements onButtonClickedLi
              firstOperator = "";
              nextOperator = "";
          }
-
-         //calls operation method when there are two operands and one operator to work with
+         //calls operation method when there are two operands and an operator to work with
          else if (!num2.equals("")) {
              operation();
          }
@@ -146,13 +143,14 @@ public class MainActivity extends AppCompatActivity implements onButtonClickedLi
             }
             num2 = "";
             firstOperator = nextOperator;
+            nextOperator = "";
             result = (String.valueOf(total));
-            resultView.setText(suppressZero());
+            resultView.setText(formatResult());
         }
 
-    //suppresses unnecessary zeros and returns the formatted the output to
-    //only four digits after the decimal
-    public String suppressZero(){
+    //suppresses unnecessary zeros, limits the length of accepted numbers and
+    // returns the formatted the output
+    public String formatResult(){
         DecimalFormat fmt = new DecimalFormat("#######.####");
         double number = Double.parseDouble(result);
         result = fmt.format(number);
@@ -193,7 +191,6 @@ public class MainActivity extends AppCompatActivity implements onButtonClickedLi
         else{
             string = fmt.format(number * -1);
         }
-
         return string;
     }
 }
