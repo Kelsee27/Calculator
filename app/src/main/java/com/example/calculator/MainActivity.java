@@ -37,12 +37,14 @@ public class MainActivity extends AppCompatActivity implements onButtonClickedLi
         //Defines "+/-" button, it allows the user to enter a negative number
         //or to change the sign of an existing number
          if (button.getText().equals("+/-")) {
-            if (num2.isEmpty() && !result.isEmpty()) {
-                result = changeSign(result);
-                resultView.setText(formatResult());
-            } else if (!result.isEmpty()){
-                resultView.setText(num2 = changeSign(num2));
-            }
+             if (!result.isEmpty() && result != "0") {
+                 if (num2.isEmpty()) {
+                     result = changeSign(result);
+                     resultView.setText(formatResult());
+                 } else {
+                     resultView.setText(num2 = changeSign(num2));
+                 }
+             }
         }
         //Checking to see if an operator has been selected.
         //If not, the digit or decimal entered are appended to result
@@ -92,11 +94,13 @@ public class MainActivity extends AppCompatActivity implements onButtonClickedLi
          }
          //deals with percent button
          else if (button.getText().equals("%")){
+             if (!result.isEmpty()) {
              double num = Double.parseDouble(result);
              result = String.valueOf(num / 100);
              resultView.setText(formatResult());
              firstOperator = "";
              nextOperator = "";
+             }
          }
          //calls operation method when the equal button is pressed then clears the operation
          //variables to avoid crashing
