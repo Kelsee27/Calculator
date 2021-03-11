@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements onButtonClickedLi
         //Defines "+/-" button, it allows the user to enter a negative number
         //or to change the sign of an existing number
          if (button.getText().equals("+/-")) {
-             if (!result.isEmpty() && result != "0") {
+             if (!result.isEmpty() && !result.equals("0")) {
                  if (num2.isEmpty()) {
                      result = changeSign(result);
                      resultView.setText(formatResult());
