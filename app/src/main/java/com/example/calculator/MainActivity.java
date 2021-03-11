@@ -81,7 +81,6 @@ public class MainActivity extends AppCompatActivity implements onButtonClickedLi
             firstOperator = button.getText().toString();
             Log.d(firstOperator, "first operator is assigned");
         }
-
         else{
             nextOperator = button.getText().toString();
             Log.d(nextOperator, "next operator is assigned");
@@ -105,13 +104,13 @@ public class MainActivity extends AppCompatActivity implements onButtonClickedLi
          //calls operation method when the equal button is pressed then clears the operation
          //variables to avoid crashing
          else if (button.getText().equals("=")){
-             operation();
+             performOperation();
              firstOperator = "";
              nextOperator = "";
          }
          //calls operation method when there are two operands and an operator to work with
          else if (!num2.equals("")) {
-             operation();
+             performOperation();
          }
 
          //Checks if the result variable is empty, if it is, it will reset all variables
@@ -123,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements onButtonClickedLi
 
         //performs arithmetic calculations then sets TextView to result using the
         // suppressZero method
-        public void operation(){
+        public void performOperation(){
             double total = 0;
             switch (firstOperator) {
                 case "+":
@@ -133,15 +132,10 @@ public class MainActivity extends AppCompatActivity implements onButtonClickedLi
                     total = Double.parseDouble(result) - Double.parseDouble(num2);
                     break;
                 case "/":
-                    if (result.equals("0") || num2.equals("0")){
-                        //total will remain zero as previously defined to avoid divide by 0 error
-                        // Also the operator variables will be cleared
-                        nextOperator = "";
-                    }
-                    else {
+                    if (!result.equals("0") && !num2.equals("0")) {
                         total = Double.parseDouble(result) / Double.parseDouble(num2);
-                        break;
                     }
+                    break;
                 case "x":
                     total = Double.parseDouble(result) * Double.parseDouble(num2);
                     break;
@@ -154,7 +148,7 @@ public class MainActivity extends AppCompatActivity implements onButtonClickedLi
         }
 
     //suppresses unnecessary zeros, limits the length of accepted numbers and
-    // returns the formatted the output
+    //returns the formatted the output
     public String formatResult(){
         DecimalFormat fmt = new DecimalFormat("#######.####");
         double number = Double.parseDouble(result);
