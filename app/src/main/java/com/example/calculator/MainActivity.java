@@ -1,4 +1,5 @@
 //Kelsee Carmichael Android Calculator App
+//This class defines the basic functionality of a calculator
 package com.example.calculator;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,10 +37,10 @@ public class MainActivity extends AppCompatActivity implements onButtonClickedLi
         //Defines "+/-" button, it allows the user to enter a negative number
         //or to change the sign of an existing number
          if (button.getText().equals("+/-")) {
-            if (num2.isEmpty()) {
+            if (num2.isEmpty() && !result.isEmpty()) {
                 result = changeSign(result);
                 resultView.setText(formatResult());
-            } else {
+            } else if (!result.isEmpty()){
                 resultView.setText(num2 = changeSign(num2));
             }
         }

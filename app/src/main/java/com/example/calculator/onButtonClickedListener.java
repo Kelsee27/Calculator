@@ -1,4 +1,4 @@
-//Kelsee Carmichael 
+//Kelsee Carmichael
 package com.example.calculator;
 
 import android.view.View;
